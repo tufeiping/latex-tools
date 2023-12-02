@@ -1,4 +1,6 @@
-# Getting Started with Create React App
+# 一个简单的LaTeX公式辅助工具
+
+<img src="./screen-snapshot.png"/>
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

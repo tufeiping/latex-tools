@@ -36,3 +36,13 @@
     transform: rotate(360deg);
   }
 }
+
+button:hover{
+  background-color: #282c34;
+  color: white;
+  cursor: pointer;
+}
+
+#preview {
+  margin: 4px 10px;
+}
