@@ -1,25 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import MathJax from 'react-mathjax2'
 
-function App() {
+const Context = MathJax.Context;
+const Node = MathJax.Node;
+
+const App = () => {
+  const [expression, setExpression] = useState("");
+
+  const handleClick = (e) => {
+    const mathType = e.target.id;
+    setExpression(generateExpression(mathType));
+  };
+
+  const generateExpression = (mathType) => {
+    const expressions = {
+      sum: "x + y",
+      difference: "x - y",
+      product: "x \cdot y",
+      quotient: "x / y",
+      integration: "\\int f(x)dx",
+    };
+    return expressions[mathType];
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div>
+        <button id="sum" onClick={handleClick}><Context><Node inline>{'\\sum_{a}^{b}x'}</Node></Context></button>
+        <button id="difference" onClick={handleClick}>Difference</button>
+        <button id="product" onClick={handleClick}>Product</button>
+        <button id="quotient" onClick={handleClick}>Quotient</button>
+        <button id="integration" onClick={handleClick}><Context><Node inline>{'\\int f(x)dx'}</Node></Context></button>
+        {/* <span dangerouslySetInnerHTML={{ __html: expression }} /> */}
+      </div>
+      <Context><Node inline>{expression}</Node>
+      </Context></>
   );
-}
+};
 
 export default App;
