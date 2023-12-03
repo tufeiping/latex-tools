@@ -1,5 +1,6 @@
 import React, { useState, useRef } from "react";
 import MathJax from 'react-mathjax2'
+import ExpressionDefinitions from "./expressions";
 import "./App.css";
 
 const Context = MathJax.Context;
@@ -53,14 +54,7 @@ const App = () => {
   };
 
   const generateExpression = (mathType) => {
-    const expressions = {
-      sum: "\\sum_{a}^{b}x",
-      difference: "x - y",
-      product: "x \\cdot y",
-      quotient: "\\frac{x}{y}",
-      integration: "\\int f(x)dx",
-    };
-    return expressions[mathType];
+    return ExpressionDefinitions[mathType];
   };
 
   const handleClick = (e) => {
@@ -72,11 +66,17 @@ const App = () => {
   return (
     <>
       <div style={TOOL_BAR_STYLE}>
-        <button style={TOOL_BTN_STYLE} id="sum" onClick={handleClick}><Context><Node inline>{'\\sum_{a}^{b}x'}</Node></Context></button>
-        <button style={TOOL_BTN_STYLE} id="difference" onClick={handleClick}><Context><Node inline>{'x-y'}</Node></Context></button>
-        <button style={TOOL_BTN_STYLE} id="product" onClick={handleClick}><Context><Node inline>{'x \\cdot y'}</Node></Context></button>
-        <button style={TOOL_BTN_STYLE} id="quotient" onClick={handleClick}><Context><Node inline>{'\\frac{x}{y}'}</Node></Context></button>
-        <button style={TOOL_BTN_STYLE} id="integration" onClick={handleClick}><Context><Node inline>{'\\int f(x)dx'}</Node></Context></button>
+        {Object.keys(ExpressionDefinitions).map(key => (
+          <button
+            style={TOOL_BTN_STYLE}
+            id={key}
+            onClick={handleClick}
+          >
+            <Context>
+              <Node inline>{ExpressionDefinitions[key]}</Node>
+            </Context>
+          </button>
+        ))}
       </div>
       <div>
         <textarea style={INPUT_MEMO_STYLE} ref={textareaRef} onChange={(e) => setExpression(e.target.value)} type="text" value={expression} />
