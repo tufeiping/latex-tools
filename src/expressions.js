@@ -1,6 +1,5 @@
 const ExpressionDefinitions = {
     a: "\\sqrt{x}",
-    b: "\\{x \\in \\mathbb{R} : x > 0\\}",
     c: "\\sum_{a}^{b}x",
     d: "x-y",
     e: "x\\cdoty",
@@ -13,6 +12,10 @@ const ExpressionDefinitions = {
     l: "\\frac{\\partial y}{\\partial x}",
     m: "\\ln(x)",
     n: "\\log_b(x)",
+    o: "\\prod",
+    p: "\\prod_{a}^{b}",
+    q: "\\lim_{x \\to \\infty} e^x",
+    b: "\\{x \\in \\mathbb{R} : x > 0\\}",
 };
 
 export default ExpressionDefinitions;
