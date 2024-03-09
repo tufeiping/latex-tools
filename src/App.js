@@ -39,7 +39,7 @@ const INPUT_MEMO_STYLE = {
 };
 
 const App = (props) => {
-  const [expression, setExpression] = useState("");
+  const [expression, _setExpression] = useState("");
   const textareaRef = useRef();
 
   const insertTextAtCursor = (text) => {
@@ -54,6 +54,17 @@ const App = (props) => {
     setExpression(full_text);
   };
 
+  const setExpression = (text) => {
+    _setExpression(text);
+    if (props.setGetExpression) {
+      props.setGetExpression((obj) => {
+        obj.getExpression = () => {
+          return text;
+        }
+      });
+    }
+  }
+
   const generateExpression = (mathType) => {
     return ExpressionDefinitions[mathType];
   };
@@ -62,13 +73,6 @@ const App = (props) => {
     const mathType = e.currentTarget.id;
     let v = generateExpression(mathType);
     insertTextAtCursor(v);
-    if (props.setGetExpression) {
-      props.setGetExpression((obj) => {
-        obj.getExpression = () => {
-          return expression;
-        }
-      });
-    }
   };
 
   return (
