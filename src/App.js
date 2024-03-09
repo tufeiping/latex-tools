@@ -7,7 +7,7 @@ const Context = MathJax.Context;
 const Node = MathJax.Node;
 
 const TOOL_BAR_STYLE = {
-  height: 60,
+  height: 80,
   display: 'flex',
   padding: '4px 10px',
   overflow: 'auto',
@@ -23,7 +23,7 @@ const TOOL_BTN_STYLE = {
   color: '#000',
   fontSize: '16px',
   padding: '10px 20px',
-  margin: '0 2px',
+  margin: '8px 2px',
   textDecoration: 'none',
   transition: '0.3s',
   ':hover': {
