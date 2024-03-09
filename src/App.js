@@ -10,6 +10,7 @@ const TOOL_BAR_STYLE = {
   height: 60,
   display: 'flex',
   padding: '4px 10px',
+  overflow: 'auto',
 };
 
 const TOOL_BTN_STYLE = {
@@ -37,7 +38,7 @@ const INPUT_MEMO_STYLE = {
   margin: '10px 10px',
 };
 
-const App = () => {
+const App = (props) => {
   const [expression, setExpression] = useState("");
   const textareaRef = useRef();
 
@@ -61,6 +62,13 @@ const App = () => {
     const mathType = e.currentTarget.id;
     let v = generateExpression(mathType);
     insertTextAtCursor(v);
+    if (props.setGetExpression) {
+      props.setGetExpression((obj) => {
+        obj.getExpression = () => {
+          return expression;
+        }
+      });
+    }
   };
 
   return (
