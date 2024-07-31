@@ -7,9 +7,10 @@ const Context = MathJax.Context;
 const Node = MathJax.Node;
 
 const TOOL_BAR_STYLE = {
-  height: 60,
+  height: 80,
   display: 'flex',
   padding: '4px 10px',
+  overflow: 'auto',
 };
 
 const TOOL_BTN_STYLE = {
@@ -22,7 +23,7 @@ const TOOL_BTN_STYLE = {
   color: '#000',
   fontSize: '16px',
   padding: '10px 20px',
-  margin: '0 2px',
+  margin: '8px 2px',
   textDecoration: 'none',
   transition: '0.3s',
   ':hover': {
@@ -37,8 +38,8 @@ const INPUT_MEMO_STYLE = {
   margin: '10px 10px',
 };
 
-const App = () => {
-  const [expression, setExpression] = useState("");
+const App = (props) => {
+  const [expression, _setExpression] = useState("");
   const textareaRef = useRef();
 
   const insertTextAtCursor = (text) => {
@@ -52,6 +53,17 @@ const App = () => {
     textareaRef.current.selectionStart = full_text;
     setExpression(full_text);
   };
+
+  const setExpression = (text) => {
+    _setExpression(text);
+    if (props.setGetExpression) {
+      props.setGetExpression((obj) => {
+        obj.getExpression = () => {
+          return text;
+        }
+      });
+    }
+  }
 
   const generateExpression = (mathType) => {
     return ExpressionDefinitions[mathType];
