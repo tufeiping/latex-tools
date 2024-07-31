@@ -2,6 +2,34 @@
 
 <img src="./screen-snapshot.png"/>
 
+## Introduction
+
+This project is a simple tool to help you write LaTeX formulas.
+It's built with React.js
+
+### Import JavaScript Library
+
+```html
+<script src="/path/to/cdn/this/project/js/file"></script>
+```
+
+### Usage
+
+```html
+<script>
+    window.onload = function () {
+      window.LaTeXBuilder('root', function(text) {
+        console.log(text); // click the button of LaTeX-tools UI to get the formula
+      });
+    };
+  </script>
+```
+
+>[!IMPORTANT]
+> The project is one part of FlyLaTeX.
+
+## Other
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
