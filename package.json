@@ -3,9 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "katex": "^0.16.11",
+    "latex-tools": "file:",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
-    "react-mathjax2": "^0.0.2",
+    "react-katex": "^2.0.2",
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },

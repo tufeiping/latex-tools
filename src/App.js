@@ -1,10 +1,8 @@
 import React, { useState, useRef } from "react";
-import MathJax from 'react-mathjax2'
+import { InlineMath, BlockMath } from 'react-katex';
+import 'katex/dist/katex.min.css';
 import ExpressionDefinitions from "./expressions";
 import "./App.css";
-
-const Context = MathJax.Context;
-const Node = MathJax.Node;
 
 const TOOL_BAR_STYLE = {
   height: 80,
@@ -48,7 +46,6 @@ const App = (props) => {
     const textAfter = textareaRef.current.value.substring(selectionEnd);
     let full_text = textBefore + text + textAfter;
     textareaRef.current.value = full_text
-    // 设置焦点位置在插入的文本之后
     textareaRef.current.selectionEnd = selectionStart + text.length;
     textareaRef.current.selectionStart = full_text;
     setExpression(full_text);
@@ -84,16 +81,14 @@ const App = (props) => {
             id={key}
             onClick={handleClick}
           >
-            <Context>
-              <Node inline>{ExpressionDefinitions[key]}</Node>
-            </Context>
+            <InlineMath>{ExpressionDefinitions[key]}</InlineMath>
           </button>
         ))}
       </div>
       <div>
         <textarea style={INPUT_MEMO_STYLE} ref={textareaRef} onChange={(e) => setExpression(e.target.value)} type="text" value={expression} />
       </div>
-      <div id="preview"><Context><Node inline>{expression}</Node></Context></div>
+      <div id="preview"><BlockMath>{expression}</BlockMath></div>
     </>
   );
 };
