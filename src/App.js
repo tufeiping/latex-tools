@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import { InlineMath, BlockMath } from 'react-katex';
-import 'katex/dist/katex.min.css';
+// import 'katex/dist/katex.min.css';
 import ExpressionDefinitions from "./expressions";
 import "./App.css";
 
